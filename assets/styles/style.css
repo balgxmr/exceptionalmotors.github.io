@@ -1,0 +1,215 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "nav"
+    "main"
+    "footer";
+  height: 100vh;
+}
+
+/* Header */
+.header {
+  grid-area: header;
+  background-color: #3a3000;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+}
+.header__logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+.header__texto {
+  font-size: 1.5rem;
+  font-family: "Staatliches", sans-serif;
+}
+.header__menu {
+  display: none;
+}
+
+/* Nav */
+.navegacion {
+  grid-area: nav;
+  background-color: #eee2bc;
+  padding: 1.1rem;
+  text-align: center;
+}
+.navegacion__texto {
+  font-size: 1.5rem;
+}
+.navegacion__selector {
+  margin-top: 2%;
+  width: 60%;
+  font-size: 1.15rem;
+  padding: 0.7rem 0.5rem;
+  background-color: #fff;
+  border: 1px solid #caced1;
+  border-radius: 10px;
+  color: #000;
+}
+
+/* Main */
+.main {
+  grid-area: main;
+  background-color: #fff;
+  overflow: auto;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+.card {
+  margin: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  background-color: #6d5e0f;
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.4);
+}
+.card__img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+.card__texto {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #fff;
+}
+.card__boton {
+  padding: 1rem 2rem;
+  background-color: #eee2bc;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1a1500;
+}
+.selectPage {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 3%;
+  width: 100%;
+}
+.selectPage__box {
+  background-color: #eee2bc;
+  padding: 0.5rem;
+  border: 0.1px solid #decd98;
+}
+.selectPage__box--activo {
+  background-color: #6d5e0f;
+  border: none;
+}
+/* Para seleccionar el primer y ultimo hijo (en este caso el box de selectPage para que solo redondeé las esquinas extremas y no todos los boxes) */
+.selectPage__box:first-child {
+  border-radius: 5px 0 0 5px;
+}
+.selectPage__box:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+/* Footer */
+.footer {
+  grid-area: footer;
+  background-color: #3a3000;
+  text-align: center;
+}
+.footer__redes {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.3rem;
+  color: #fff;
+}
+.footer__text {
+  color: #fff;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+@media (min-width: 576px) {
+  .gridContainer {
+    grid-template-columns: auto 4fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header nav"
+      "header main"
+      "footer main";
+  }
+
+  /* header */
+  .header {
+    flex-direction: column;
+    text-align: center;
+    justify-content: start;
+  }
+  .header__menu {
+    display: flex;
+    flex-direction: column;
+    margin: 10%;
+  }
+  .header__link {
+    color: #fff;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: 0.1s ease;
+    margin: 5% 0;
+  }
+  .header__link:hover {
+    color: #bdbdbd;
+  }
+  .header__hamburguer {
+    display: none;
+  }
+
+  /* main */
+  .main {
+    display: grid;
+    grid-template-rows: 1fr auto; /* Una fila para las cards y otra para selectPage */
+    grid-template-areas:
+      "cards"
+      "pagination";
+  }
+  .cards {
+    grid-area: cards;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    overflow-y: auto; /* hace que solo el contenedor de las cards sea desplazable */
+  }
+  .card {
+    height: auto;
+    width: 400px;
+    margin: 1%;
+  }
+  .card__boton {
+    transition: 0.15s ease;
+  }
+  .card__boton:hover {
+    scale: 1.1;
+    background-color: #cfc092;
+  }
+  .selectPage {
+    grid-area: pagination;
+    margin: 2%;
+  }
+}
